@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.GachaMod" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">#7C4DFF</item>
+        <item name="android:statusBarColor">#7C4DFF</item>
+        <item name="android:navigationBarColor">#FFEEF7</item>
+    </style>
+</resources>
