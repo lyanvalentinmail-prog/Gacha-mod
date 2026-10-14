@@ -15,7 +15,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.app.Activity;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,7 +25,7 @@ import java.io.OutputStream;
  * Gacha Mod: envuelve el juego web (carpeta www dentro del APK) en un WebView.
  * El juego funciona 100% offline y guarda la partida en localStorage.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     /** Puente JS -> Android: permite guardar las fotos PNG en Descargas. */
     public class PngBridge {

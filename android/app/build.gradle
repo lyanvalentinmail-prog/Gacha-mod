@@ -38,6 +38,3 @@ def copyWeb = tasks.register("copyWebAssets", Copy) {
 }
 tasks.named("preBuild").configure { dependsOn(copyWeb) }
 
-dependencies {
-    implementation "androidx.appcompat:appcompat:1.7.0"
-}
