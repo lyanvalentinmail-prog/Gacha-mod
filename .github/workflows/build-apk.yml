@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   build:
@@ -36,7 +37,17 @@ jobs:
 
       - name: 🔨 Compilar el APK
         working-directory: android
-        run: gradle assembleDebug --stacktrace
+        shell: bash
+        run: set -o pipefail; gradle assembleDebug --stacktrace 2>&1 | tee "$GITHUB_WORKSPACE/build.log"
+
+      - name: 🪲 Reportar el error (solo si falla)
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tail -c 6000 "$GITHUB_WORKSPACE/build.log" > /tmp/tail.txt || echo "sin log" > /tmp/tail.txt
+          { echo "La compilación del APK falló. Últimas líneas del log:"; echo '```'; cat /tmp/tail.txt; echo '```'; } > /tmp/body.md
+          gh issue create --title "🪲 Error compilando el APK (run ${{ github.run_id }})" --body-file /tmp/body.md || true
 
       - name: 📦 Subir el APK como artefacto descargable
         uses: actions/upload-artifact@v4
