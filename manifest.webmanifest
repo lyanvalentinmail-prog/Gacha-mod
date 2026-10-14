@@ -1,0 +1,15 @@
+{
+  "name": "Gacha Mod",
+  "short_name": "Gacha Mod",
+  "description": "Crea personajes chibi, vístelos, tira del gacha y haz escenas. Tipo Gacha Club / Gacha Life.",
+  "lang": "es",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffeef7",
+  "theme_color": "#7c4dff",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

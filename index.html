@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gacha Mod — Crea, viste y haz escenas</title>
+<meta name="theme-color" content="#7c4dff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">🌸 Gacha <span>Mod</span></div>
+  <div class="wallet">
+    <span class="pill">💎 <b id="gems">0</b></span>
+    <button class="pill btn-pill" id="dailyBtn">🎁 Diario</button>
+    <button class="pill btn-pill" id="installBtn" hidden>📲 Instalar</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-view="home">🏠 Personajes</button>
+  <button class="tab" data-view="create">🎨 Crear</button>
+  <button class="tab" data-view="gacha">🎰 Gacha</button>
+  <button class="tab" data-view="scene">🎬 Escena</button>
+</nav>
+
+<main>
+  <!-- PERSONAJES -->
+  <section id="view-home" class="view active">
+    <h1>Mis personajes <small id="slotInfo"></small></h1>
+    <p class="sub">Toca un personaje para editarlo, o un espacio vacío para crear uno nuevo. Como en Gacha Club: ¡hasta 10 protagonistas!</p>
+    <div id="slots" class="grid"></div>
+  </section>
+
+  <!-- CREAR / VESTIR -->
+  <section id="view-create" class="view">
+    <div class="editor">
+      <div class="editor-preview">
+        <div class="preview-card" id="preview"></div>
+        <input id="charName" maxlength="24" placeholder="Nombre del personaje">
+        <div class="row wrap">
+          <button class="btn" id="saveChar">💾 Guardar</button>
+          <button class="btn ghost" id="randomChar">🎲 Aleatorio</button>
+          <button class="btn ghost" id="pngChar">⬇️ PNG</button>
+        </div>
+        <div class="row wrap">
+          <button class="btn ghost small" id="exportChar">📤 Exportar código</button>
+          <button class="btn ghost small" id="importChar">📥 Importar código</button>
+          <button class="btn ghost small danger" id="deleteChar">🗑️ Borrar</button>
+        </div>
+        <textarea id="codeBox" rows="3" placeholder="Aquí aparecerá el código de tu personaje. Pega un código y pulsa Importar."></textarea>
+      </div>
+      <div class="editor-panel">
+        <div class="cat-tabs" id="catTabs"></div>
+        <div id="catBody"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GACHA -->
+  <section id="view-gacha" class="view">
+    <div class="gacha-hero">
+      <div class="machine">🎰</div>
+      <h1>Gacha de personajes y ropa</h1>
+      <p>Tira para conseguir <b>personajes nuevos</b> y desbloquear <b>ropa, peinados y accesorios especiales</b> 🔒 para el creador.</p>
+      <div class="row center">
+        <button class="btn big" id="pull1">Tirar ×1 · 💎 200</button>
+        <button class="btn big alt" id="pull10">Tirar ×10 · 💎 2000</button>
+      </div>
+      <p class="hint" id="pityInfo"></p>
+      <div id="pullResults" class="grid small-grid"></div>
+    </div>
+    <h2>🔓 Desbloqueado en el creador</h2>
+    <div id="unlockList" class="unlock-list"></div>
+  </section>
+
+  <!-- ESCENA -->
+  <section id="view-scene" class="view">
+    <h1>🎬 Estudio de escenas</h1>
+    <p class="sub">Elige fondo, coloca hasta 4 personajes, escribe sus diálogos y saca la foto 📸.</p>
+    <div class="scene-layout">
+      <div class="scene-stage" id="sceneStage"></div>
+      <div class="scene-controls">
+        <label>Fondo <select id="sceneSelect"></select></label>
+        <label>Personajes en escena (máx. 4) <div id="sceneChars" class="check-list"></div></label>
+        <div id="sceneTexts"></div>
+        <button class="btn big" id="photoBtn">📸 Sacar foto (PNG)</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="toast" class="toast hidden"></div>
+<div id="reveal" class="reveal hidden"><div class="reveal-box"><h2 id="revealTitle"></h2><div id="revealCard"></div><button class="btn big" id="revealClose">¡Genial!</button></div></div>
+
+<footer>
+  Gacha Mod 🌸 Tu partida se guarda en este dispositivo ·
+  <a href="https://github.com/lyanvalentinmail-prog/Gacha-mod/releases" target="_blank" rel="noopener">⬇️ Descargar APK</a> ·
+  En el navegador: menú ⋮ → «Instalar app»
+</footer>
+<script src="js/avatar.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

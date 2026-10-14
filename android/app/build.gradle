@@ -1,0 +1,43 @@
+plugins { id "com.android.application" }
+
+android {
+    namespace "com.gachamod.app"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.gachamod.app"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    // La web vive en la raíz del repo: se copia dentro del APK al compilar,
+    // así el APK siempre lleva la última versión del juego.
+    sourceSets {
+        main { assets.srcDirs = ["src/main/assets", "$buildDir/generated/gachamod-assets"] }
+    }
+}
+
+def webDir = rootProject.file("../")
+def copyWeb = tasks.register("copyWebAssets", Copy) {
+    from(webDir) {
+        include "index.html", "manifest.webmanifest", "icon.svg", "sw.js"
+        include "css/**", "js/**"
+    }
+    into layout.buildDirectory.dir("generated/gachamod-assets/www")
+}
+tasks.named("preBuild").configure { dependsOn(copyWeb) }
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:1.7.0"
+}
