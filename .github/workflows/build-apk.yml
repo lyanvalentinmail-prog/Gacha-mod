@@ -4,7 +4,7 @@ name: 📱 Compilar APK (Android)
 # con el APK adjunto) o manualmente desde la pestaña Actions.
 on:
   push:
-    branches: [main]
+    branches: [main, "arena/**"]
     tags: ["v*"]
   workflow_dispatch:
 
