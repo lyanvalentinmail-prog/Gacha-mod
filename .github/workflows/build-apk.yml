@@ -24,8 +24,10 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: 🤖 Instalar Android SDK
-        uses: android-actions/setup-android@v3
+      # Los runners de GitHub ya traen el Android SDK instalado
+      # (ANDROID_HOME viene configurado), no hace falta instalarlo.
+      - name: 🤖 Comprobar Android SDK
+        run: echo "SDK en $ANDROID_HOME" && ls "$ANDROID_HOME/platforms" && yes | sdkmanager --licenses > /dev/null 2>&1 || true
 
       - name: 🐘 Instalar Gradle 8.9
         uses: gradle/actions/setup-gradle@v4
